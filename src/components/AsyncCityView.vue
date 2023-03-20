@@ -65,8 +65,20 @@
             alt="hour weather"
           />
           <div class="flex gap-2 flex-1 justify-end">
-            <p>H:{{ weekData.high }}°</p>
-            <p>L:{{ weekData.low }}°</p>
+            <p>
+              H:{{
+                weekData.high.length > 2
+                  ? weekData.high
+                  : weekData.high.padStart(2, "0")
+              }}°
+            </p>
+            <p>
+              L:{{
+                weekData.low.length > 2
+                  ? weekData.low
+                  : weekData.low.padStart(2, "0")
+              }}°
+            </p>
           </div>
         </div>
       </div>

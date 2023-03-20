@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
+import CityList from "../components/CityList.vue";
 
 const keyAPI = "S__tENa07EK0IwlzG";
 const searchQuery = ref("");
@@ -62,6 +63,14 @@ function previewCity(searchResult) {
       <p v-if="searchError && searchQuery !== '' && searchResult === null">
         抱歉,出了一些问题,请检查城市名是否正确
       </p>
+    </div>
+    <div class="flex flex-col gap-4">
+      <Suspense>
+        <CityList />
+        <template #fallback>
+          <p>Loading...</p>
+        </template>
+      </Suspense>
     </div>
   </main>
 </template>
