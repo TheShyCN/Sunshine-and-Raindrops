@@ -1,4 +1,4 @@
-# weather_app
+# Sunshine-and-Raindrops
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -27,3 +27,5 @@ npm run dev
 ```sh
 npm run build
 ```
+## 兄弟们记得把keyAPI(AsyncCityView.vue,HomeView.vue和CityList.vue三个组件中)改成自己的, 学生党只有14天的体验时间, 过期了key就不能用了
+## 小声bb: TailwindCSS是真的方便给力
