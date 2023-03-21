@@ -83,6 +83,14 @@
         </div>
       </div>
     </div>
+
+    <div
+      class="flex items-center gap-2 py-12 text-white cursor-pointer duration-150 hover:text-red-500"
+      @click="removeCity"
+    >
+      <i class="iconfont">&#xec45;</i>
+      <p>不再关注</p>
+    </div>
   </div>
 </template>
 
@@ -90,8 +98,10 @@
 import axios from "axios";
 import { useRoute } from "vue-router";
 import { computed } from "vue";
+import { useRouter } from "vue-router";
 
 const route = useRoute();
+const router = useRouter();
 
 const keyAPI = "S__tENa07EK0IwlzG";
 
@@ -118,6 +128,8 @@ const getWeatherData = async () => {
       hourly: HOURresult.data.results[0].hourly,
       weekly: WEEKresult.data.results[0].daily,
     };
+    // 等待一秒展示动画
+    await new Promise((res) => setTimeout(res, 1000));
     return weatherData;
   } catch (error) {
     console.log(error);
@@ -145,6 +157,15 @@ const hours = computed(() => {
     }`;
   });
 });
+
+const removeCity = () => {
+  const cities = JSON.parse(localStorage.getItem("savedCities"));
+  localStorage.setItem(
+    "savedCities",
+    JSON.stringify(cities.filter((city) => city.id !== route.query.id))
+  );
+  router.push({ name: "home" });
+};
 </script>
 
 <style></style>

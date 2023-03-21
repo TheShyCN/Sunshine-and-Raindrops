@@ -6,7 +6,7 @@
       <RouterLink :to="{ name: 'home' }">
         <div class="flex items-center gap-3">
           <i class="iconfont text-3xl">&#xe600;</i>
-          <p class="text-2xl text-font">本地天气</p>
+          <p class="text-2xl text-font">晴雨时刻</p>
         </div>
       </RouterLink>
       <div class="flex gap-3 flex-1 justify-end">
@@ -57,7 +57,7 @@ const router = useRouter();
 const savedCities = ref([]);
 const addCity = () => {
   if (localStorage.getItem("savedCities")) {
-    savedCities.value.push(JSON.parse(localStorage.getItem("savedCities")));
+    savedCities.value = JSON.parse(localStorage.getItem("savedCities"));
   }
   const locationObj = {
     id: uid(),
@@ -70,6 +70,7 @@ const addCity = () => {
 
   let query = Object.assign({}, route.query);
   delete query.preview;
+  query.id = locationObj.id;
   router.replace({ query });
 };
 
